@@ -15,6 +15,7 @@
    <GenerateDocumentationFile>true</GenerateDocumentationFile>
    <RootNamespace>Meadow</RootNamespace>
    <Nullable>enable</Nullable>
+   <Configurations>Debug;Release;ProjectRefs</Configurations>
  </PropertyGroup>
  <PropertyGroup>
    <LangVersion>9.0</LangVersion>
@@ -23,7 +24,16 @@
   <ItemGroup>
     <PackageReference Include="System.Memory" Version="4.5.4" Condition="'$(TargetFramework)'=='netstandard2.0'" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Meadow.Units\Source\Meadow.Units\Meadow.Units.csproj" />
-  </ItemGroup>
+  <Choose>
+    <When Condition="'$(Configuration)' == 'ProjectRefs'">
+      <ItemGroup>
+        <ProjectReference Include="..\..\..\Meadow.Units\Source\Meadow.Units\Meadow.Units.csproj" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <PackageReference Include="Meadow.Units" Version="0.*" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
 </Project>
