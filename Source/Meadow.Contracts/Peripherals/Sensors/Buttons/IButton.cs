@@ -31,11 +31,5 @@ namespace Meadow.Peripherals.Sensors.Buttons
         /// The minimum duration for a long press.
         /// </summary>
         public TimeSpan LongClickedThreshold { get; set; }
-
-        /// <summary>
-        /// Returns the current raw state of the switch. If the switch 
-        /// is pressed (connected), returns true, otherwise false.
-        /// </summary>
-        bool State { get; }
     }
 }
