@@ -136,7 +136,7 @@ namespace Meadow.Hardware
         /// <param name="sampleCount"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public static IAnalogInputPort CreateAnalogInputPort(this IPin pin, int sampleCount)
+        public static IAnalogInputPort CreateAnalogInputPort(this IPin pin, int sampleCount = 1)
         {
             if (pin.Controller is IAnalogInputController controller)
             {
