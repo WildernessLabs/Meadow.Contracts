@@ -60,6 +60,14 @@ namespace Meadow
         {
             get => Services?.Get<IMeadowCloudService>();
         }
+
+        /// <summary>
+        /// Retrieves the current ICommandService instance
+        /// </summary>
+        public static ICommandService CommandService
+        {
+            get => Services?.Get<ICommandService>();
+        }
 #pragma warning restore CS8603
     }
 }
