@@ -3,7 +3,7 @@
 namespace Meadow.Cloud;
 
 /// <summary>
-/// Service interface for subscribing and unsubscribing to Meadow commands.
+/// Service responsible for subscribing and unsubscribing to Meadow commands.
 /// </summary>
 public interface ICommandService
 {
