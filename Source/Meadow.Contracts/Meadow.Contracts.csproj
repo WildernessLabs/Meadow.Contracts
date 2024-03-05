@@ -1,10 +1,10 @@
 <Project Sdk="Meadow.Sdk/1.1.0">
  <PropertyGroup>
-    <Version>1.9.0</Version>
+   <Version>1.9.0</Version>
    <TargetFramework>netstandard2.1</TargetFramework>
    <OutputType>Library</OutputType>
    <AssemblyName>Meadow.Contracts</AssemblyName>   
-    <Company>Wilderness Labs, Inc</Company>
+   <Company>Wilderness Labs, Inc</Company>
    <PackageProjectUrl>http://developer.wildernesslabs.co/Meadow/</PackageProjectUrl>
    <PackageId>Meadow.Contracts</PackageId>
    <PackageIcon>icon.png</PackageIcon>
@@ -12,10 +12,10 @@
    <PackageTags>Meadow</PackageTags>
    <Description>Wilderness Labs contracts for .NET applications on Meadow hardware</Description>
    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+   <GenerateDocumentationFile>true</GenerateDocumentationFile>
    <RootNamespace>Meadow</RootNamespace>
-    <Nullable>enable</Nullable>
-     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+   <Nullable>enable</Nullable>
+   <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
  </PropertyGroup>
  <PropertyGroup>
     <Authors>Wilderness Labs, Inc</Authors>
