@@ -41,6 +41,11 @@ public interface IPwmLed
     Task StartPulse(TimeSpan pulseDuration, float highBrightness = 1, float lowBrightness = 0.15F);
 
     /// <summary>
+    /// Sets the LED to a specific brightness.
+    /// </summary>
+    void SetBrightness(float brightness);
+
+    /// <summary>
     /// Stops any running animations.
     /// </summary>
     Task StopAnimation();
