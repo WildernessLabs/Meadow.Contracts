@@ -15,6 +15,12 @@ public interface ICalibratableTouchscreen : ITouchScreen
     /// <summary>
     /// Sets the calibration data for the touchscreen
     /// </summary>
-    /// <param name="data">The calibration point</param>
+    /// <param name="data">The calibration points</param>
     public void SetCalibrationData(IEnumerable<CalibrationPoint> data);
+
+    /// <summary>
+    /// Tests a set of calibration data for validity
+    /// </summary>
+    /// <param name="data">A set of calibration points to test</param>
+    bool IsCalibrationDataValid(IEnumerable<CalibrationPoint> data);
 }

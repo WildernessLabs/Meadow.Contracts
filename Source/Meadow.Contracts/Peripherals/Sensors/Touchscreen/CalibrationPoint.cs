@@ -8,6 +8,14 @@ public struct CalibrationPoint
     /// <summary>
     /// Creates a CalibrationPoint instance
     /// </summary>
+    public CalibrationPoint()
+    {
+        ScreenX = ScreenY = RawX = RawY = 0;
+    }
+
+    /// <summary>
+    /// Creates a CalibrationPoint instance
+    /// </summary>
     /// <param name="rawX">The raw touchscreen X value</param>
     /// <param name="screenX">The equivalent screen X coordinate for the raw X value</param>
     /// <param name="rawY">The raw touchscreen Y value</param>
