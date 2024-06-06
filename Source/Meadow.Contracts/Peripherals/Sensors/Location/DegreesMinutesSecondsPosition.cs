@@ -43,4 +43,20 @@ public class DegreesMinutesSecondsPosition
         };
         return $"{Degrees:f2}° {Minutes:f2}' {Seconds:f2}\"{direction}";
     }
+
+    /// <summary>
+    /// Converts the geographical position from degrees, minutes, and seconds (DMS) to a decimal format for latitude or longitude.
+    /// </summary>
+    /// <returns>A double value representing the converted decimal position.</returns>
+    public double ToDecimal()
+    {
+        double result = Degrees + (double)Minutes / 60 + (double)Seconds / 3600;
+
+        if (Direction == CardinalDirection.South || Direction == CardinalDirection.West)
+        {
+            result = -result;
+        }
+
+        return result;
+    }
 }
