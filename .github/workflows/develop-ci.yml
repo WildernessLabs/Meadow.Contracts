@@ -3,6 +3,7 @@ name: Develop Build
 on:
   workflow_dispatch:
   pull_request:
+    branches: [ develop ]
   push:
     branches: [ develop ]
 
@@ -39,11 +40,3 @@ jobs:
     
     - name: Build Meadow.Contracts
       run: dotnet build -c Release Meadow.Contracts/Source/Meadow.Contracts/Meadow.Contracts.sln
-
-    - name: Trigger Core Build
-      uses: peter-evans/repository-dispatch@v2
-      with:
-          token: ${{ secrets.CI_ACCESS_TOKEN }}
-          repository: WildernessLabs/Meadow.Core
-          event-type: cross_repo_ci
-          client-payload: '{"source": "${{ github.event.repository.name }}"}'

@@ -39,11 +39,6 @@ public interface IApp
     public Task Initialize();
 
     /// <summary>
-    /// Called by MeadowOS at boot time (before Initialize is called) if the device is booting after a crash
-    /// </summary>
-    public void OnBootFromCrash(IEnumerable<string> crashReports);
-
-    /// <summary>
     /// The core of the app's work and logic
     /// </summary>
     public Task Run();
