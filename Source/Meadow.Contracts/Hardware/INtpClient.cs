@@ -27,7 +27,7 @@ public interface INtpClient
     /// <summary>
     /// Gets or sets the poll period for NTP synchronization.
     /// </summary>
-    TimeSpan PollPeriod { get; set; }
+    TimeSpan NtpRefreshPeriodSeconds { get; set; }
 
     /// <summary>
     /// Start an NTP time synchronization
@@ -35,4 +35,9 @@ public interface INtpClient
     /// <param name="ntpServer">An optional NTP server address.  If null, the device will use the platform-configured NTP server address</param>
     /// <returns><b>true</b> if successful, otherwise <b>false</b></returns>
     Task<bool> Synchronize(string? ntpServer = null);
+
+    /// <summary>
+    /// Starts periodic synchronization using the configured NtpRefreshPeriodSeconds.
+    /// </summary>
+    public void StartPeriodicSynchronization();
 }

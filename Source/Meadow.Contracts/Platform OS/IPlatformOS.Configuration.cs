@@ -141,7 +141,12 @@
             /// <summary>
             /// Reserved pins configuration value.
             /// </summary>
-            ReservedPins
+            ReservedPins,
+
+            /// <summary>
+            /// Time period that the NTP client attempts to query the NTP time server(s)
+            /// </summary>
+            NtpRefreshPeriodSeconds
         }
 
 
