@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Meadow.Units;
+using System;
 using System.Text;
 
 namespace Meadow.Peripherals.Sensors.Location.Gnss;
@@ -38,17 +39,17 @@ public struct GnssPositionInfo : IGnssResult
     /// <summary>
     /// Indicate if the data is valid or not.
     /// </summary>
-    public bool Valid { get; set; }
+    public bool IsValid { get; set; }
 
     /// <summary>
-    /// Current speed in Knots.
+    /// Current speed
     /// </summary>
-    public decimal? SpeedInKnots { get; set; }
+    public Speed? Speed { get; set; }
 
     /// <summary>
-    /// Course in degrees (true heading).
+    /// Course (true heading).
     /// </summary>
-    public decimal? CourseHeading { get; set; }
+    public Azimuth? CourseHeading { get; set; }
 
     /// <summary>
     /// Magnetic variation.
@@ -58,7 +59,7 @@ public struct GnssPositionInfo : IGnssResult
     /// <summary>
     /// Global position
     /// </summary>
-    public SphericalPositionInfo? Position { get; set; }
+    public GeographicCoordinate? Position { get; set; }
 
     /// <summary>
     /// Quality of the fix.
@@ -82,11 +83,11 @@ public struct GnssPositionInfo : IGnssResult
     {
         TalkerID = "GP";
         TimeOfReading = null;
-        Valid = false;
-        SpeedInKnots = null;
+        IsValid = false;
+        Speed = null;
         CourseHeading = null;
         MagneticVariation = CardinalDirection.Unknown;
-        Position = new SphericalPositionInfo();
+        Position = null;
         FixQuality = null;
         NumberOfSatellites = null;
         HorizontalDilutionOfPrecision = null;
@@ -103,12 +104,12 @@ public struct GnssPositionInfo : IGnssResult
         outString.Append("GnssPositionInfo: {\r\n");
         outString.Append($"\tTalker ID: {TalkerID}, talker name: {TalkerSystemName}\r\n");
         outString.Append($"\tTime of reading: {TimeOfReading?.ToString() ?? "null"}\r\n");
-        outString.Append($"\tValid: {Valid}\r\n");
-        outString.Append($"\tLatitude: {Position?.Latitude?.ToString() ?? "null"}\r\n");
-        outString.Append($"\tLongitude: {Position?.Longitude?.ToString() ?? "null"}\r\n");
-        outString.Append($"\tAltitude: {Position?.Altitude?.ToString("f2") ?? "null"}\r\n");
-        outString.Append($"\tSpeed in Knots: {SpeedInKnots?.ToString("f2") ?? "null"}\r\n");
-        outString.Append($"\tCourse Heading: {CourseHeading?.ToString("f2") ?? "null"}\r\n");
+        outString.Append($"\tValid: {IsValid}\r\n");
+        outString.Append($"\tLatitude: {Position?.Latitude.ToString() ?? "null"}\r\n");
+        outString.Append($"\tLongitude: {Position?.Longitude.ToString() ?? "null"}\r\n");
+        outString.Append($"\tAltitude: {Position?.Altitude.Meters.ToString("f2") ?? "null"}\r\n");
+        outString.Append($"\tSpeed in Knots: {Speed?.MetersPerSecond.ToString("f2") ?? "null"}\r\n");
+        outString.Append($"\tCourse Heading: {CourseHeading?.DecimalDegrees.ToString("f2") ?? "null"}\r\n");
         outString.Append($"\tMagnetic Variation: {MagneticVariation}\r\n");
         outString.Append($"\tNumber of satellites: {NumberOfSatellites?.ToString() ?? "null"}\r\n");
         outString.Append($"\tFix quality: {FixQuality?.ToString() ?? "null"}\r\n");

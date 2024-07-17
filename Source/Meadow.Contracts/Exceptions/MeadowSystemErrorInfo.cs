@@ -19,7 +19,11 @@ public class MeadowSystemErrorInfo
         /// <summary>
         /// The coprocessor generated an error
         /// </summary>
-        CoprocessorError = 1
+        CoprocessorError = 1,
+        /// <summary>
+        /// Meadow Cloud generated an error
+        /// </summary>
+        MeadowCloudError = 2
     }
 
     /// <summary>

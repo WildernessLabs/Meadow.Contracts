@@ -81,9 +81,6 @@ public abstract class BiDirectionalInterruptPortBase : BiDirectionalPortBase, IB
         OutputType initialOutputType)
         : base(pin, channel, initialState, resistorMode, initialDirection, initialOutputType)
     {
-        InterruptMode = interruptMode;
-        DebounceDuration = debounceDuration;   // Don't trigger WireInterrupt call via property
-        GlitchDuration = glitchDuration;       // Don't trigger WireInterrupt call via property
     }
 
     /// <summary>

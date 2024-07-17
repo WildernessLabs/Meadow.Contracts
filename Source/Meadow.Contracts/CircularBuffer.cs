@@ -67,7 +67,7 @@ public class CircularBuffer<T> : IEnumerable<T>
     /// </remarks>
     public bool HasUnderrun { get; set; }
     /// <summary>
-    /// Returns <c>true</c> if the buffer's Count equals its MaxEleemnts.
+    /// Returns <c>true</c> if the buffer's Count equals its MaxElements.
     /// </summary>
     public bool IsFull { get; private set; }
 
@@ -146,24 +146,28 @@ public class CircularBuffer<T> : IEnumerable<T>
 
     private void IncrementTail()
     {
-        _tail++;
-        if (_tail >= MaxElements)
+        lock (_syncRoot)
         {
-            _tail = 0;
+            var t = _tail + 1;
+
+            _tail = (t >= MaxElements) ? 0 : t;
         }
     }
 
     private void IncrementHead()
     {
-        _head++;
-        if (_head >= MaxElements)
+        lock (_syncRoot)
         {
-            _head = 0;
-        }
+            _head++;
+            if (_head >= MaxElements)
+            {
+                _head = 0;
+            }
 
-        if (_head == _tail)
-        {
-            IsFull = true;
+            if (_head == _tail)
+            {
+                IsFull = true;
+            }
         }
     }
 
@@ -503,6 +507,10 @@ public class CircularBuffer<T> : IEnumerable<T>
 
                     // move the tail pointer
                     _tail += actual;
+                    if (_tail == MaxElements)
+                    {
+                        _tail = 0;
+                    }
                 }
                 else
                 {
@@ -514,8 +522,9 @@ public class CircularBuffer<T> : IEnumerable<T>
                     var remaining = actual - tailToEnd;
                     Array.Copy(_list, _tail, destination, tailToEnd + index, remaining);
 
-                    // move the tail pointer
-                    _tail = remaining;
+                    // move the tail pointer - if it is at the end, move it to the beginning
+
+                    _tail = (remaining >= MaxElements) ? 0 : remaining;
                 }
 
                 IsFull = false;

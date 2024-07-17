@@ -66,7 +66,7 @@ public interface INetworkAdapter
     string Name { get; }
 
     /// <summary>
-    /// Indicate if the network adapter is connected to an access point.
+    /// Indicates if the network adapter is connected to an access point.
     /// </summary>
     bool IsConnected { get; }
 

@@ -3,21 +3,6 @@
 namespace Meadow;
 
 /// <summary>
-/// Contract for desktop-specific Meadow devices
-/// </summary>
-public interface IMeadowDesktopDevice : IMeadowDevice
-{
-    /// <summary>
-    /// Gets the desktop display width
-    /// </summary>
-    public int DisplayWidth { get; }
-    /// <summary>
-    /// Gets the desktop display height
-    /// </summary>
-    public int DisplayHeight { get; }
-}
-
-/// <summary>
 /// Contract for Meadow boards.
 /// </summary>
 public interface IMeadowDevice :
@@ -67,4 +52,9 @@ public interface IMeadowDevice :
     /// </summary>
     /// <returns></returns>
     BatteryInfo? GetBatteryInfo();
+
+    /// <summary>
+    /// Gets a device-specific instance if an IReliabilityService interface
+    /// </summary>
+    public IReliabilityService? ReliabilityService { get => null; }
 }

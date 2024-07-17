@@ -1,6 +1,7 @@
 ﻿using Meadow.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Meadow.Peripherals.Sensors.Location.Gnss;
 
@@ -167,7 +168,7 @@ public class NmeaSentence
                 // store the data
                 newSentence.DataElements.Clear();
                 // skip the first element, which is the tag ($GPRMC).
-                newSentence.DataElements.AddRange(elements.Slice(1).ToArray());
+                newSentence.DataElements.AddRange(elements.Slice(1).ToArray().Select(elements => elements.Trim()));
             }
             else
             {
