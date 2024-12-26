@@ -1,12 +1,23 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.NetworkInformation;
 
 namespace Meadow.Hardware;
+
+#pragma warning disable CS0618 // Type or member is obsolete
+
+/// <summary>
+/// Represents the method that will handle network adapter state change events.
+/// </summary>
+/// <param name="adapter">The network adapter whose state has changed.</param>
+/// <param name="state">The new state of the network adapter.</param>
+public delegate void NetworkAdapterStateChangedHandler(INetworkAdapter adapter, NetworkAdapterState state);
 
 /// <summary>
 /// Delegate containing information about a change in network state event
 /// </summary>
 /// <param name="sender"></param>
+[Obsolete("This delegate is obsolete.  Use 'NetworkAdapterStateChangedHandler'", false)]
 public delegate void NetworkStateHandler(INetworkAdapter sender);
 
 /// <summary>
@@ -35,6 +46,11 @@ public delegate void NetworkErrorHandler(INetworkAdapter sender, NetworkErrorEve
 /// </summary>
 public interface INetworkAdapter
 {
+    /// <summary>
+    /// Occurs when the network adapter's state changes.
+    /// </summary>
+    event NetworkAdapterStateChangedHandler? AdapterStateChanged;
+
     /// <summary>
     /// Event raised when a network is connecting
     /// </summary>
@@ -68,7 +84,15 @@ public interface INetworkAdapter
     /// <summary>
     /// Indicates if the network adapter is connected to an access point.
     /// </summary>
-    bool IsConnected { get; }
+    public bool IsConnected => CurrentState == NetworkAdapterState.Connected;
+
+    /// <summary>
+    /// Gets the current state of the network adapter.
+    /// </summary>
+    /// <value>
+    /// A <see cref="NetworkAdapterState"/> value indicating the adapter's current state.
+    /// </value>
+    NetworkAdapterState CurrentState { get; }
 
     /// <summary>
     /// IP Address of the network adapter.
