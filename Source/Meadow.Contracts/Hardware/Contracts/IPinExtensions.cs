@@ -56,6 +56,22 @@ public static class IPinExtensions
     }
 
     /// <summary>
+    /// Creates a digital signal analyzer for the specified pin.
+    /// </summary>
+    /// <param name="pin">The pin to create a digital signal analyzer for.</param>
+    /// <param name="captureDutyCycle">Whether or not to capture duty cycle. Not capturing it is more efficient and allows faster frequency capture</param>
+    /// <returns>The created digital signal analyzer.</returns>
+    public static IDigitalSignalAnalyzer CreateDigitalSignalAnalyzer(this IPin pin, bool captureDutyCycle)
+    {
+        if (pin.Controller is IDigitalInterruptController controller)
+        {
+            return controller.CreateDigitalSignalAnalyzer(pin, captureDutyCycle);
+        }
+
+        throw new ArgumentException("Pin is not interrupt capable");
+    }
+
+    /// <summary>
     /// Creates a digital interrupt port for the specified pin with specified configurations.
     /// </summary>
     /// <param name="pin">The pin to create a digital interrupt port for.</param>
