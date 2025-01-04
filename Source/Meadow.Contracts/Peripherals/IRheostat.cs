@@ -1,4 +1,5 @@
 ﻿using Meadow.Units;
+using System;
 
 namespace Meadow.Hardware;
 
@@ -26,6 +27,11 @@ public static class RheostatExtensions
 /// </summary>
 public interface IRheostat
 {
+    /// <summary>
+    /// Raised when a change is detected
+    /// </summary>
+    public event EventHandler<IChangeResult<Resistance>>? Changed;
+
     /// <summary>
     /// Gets the maximum resistance of the rheostat.
     /// </summary>
