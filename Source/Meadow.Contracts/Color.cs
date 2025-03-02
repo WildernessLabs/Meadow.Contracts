@@ -13,9 +13,14 @@ public struct Color
     public static Color Default => new(0, 0, 0, 0);
 
     /// <summary>
+    /// Get the 2bpp grayscale value for current color
+    /// </summary>
+    public readonly byte Color2bppGray => (byte)((0.2989 * R + 0.5870 * G + 0.114 * B) / 85);
+
+    /// <summary>
     /// Get the 4bpp grayscale value for current color
     /// </summary>
-    public readonly byte Color4bppGray => (byte)((0.2989 * R + 0.5870 * G + 0.114 * B) / 16);
+    public readonly byte Color4bppGray => (byte)((0.2989 * R + 0.5870 * G + 0.114 * B) / 17);
 
     /// <summary>
     /// Get the 8bpp grayscale value for current color
@@ -25,7 +30,7 @@ public struct Color
     /// <summary>
     /// Get the 8bpp (332) color value for current color
     /// </summary>
-    public readonly byte Color8bppRgb332 => (byte)((R & 0b11100000) | ((G & 0b11100000) >> 3) | ((B & 0b11000000) >> 6));
+    public readonly byte Color8bppRgb332 => (byte)((R & 0b11100000) | ((G & 0b11100000) >> 3) | ((B & 0b11100000) >> 6));
 
     /// <summary>
     /// Get the 12bpp (444) color value for current color
@@ -40,27 +45,27 @@ public struct Color
     /// <summary>
     /// Get the 1bpp (on or off) value for current color
     /// </summary>
-    public readonly bool Color1bpp => R > 0 || G > 0 || B > 0;
+    public readonly bool Color1bpp => (0.2989 * R + 0.5870 * G + 0.114 * B) >= 128;
 
     /// <summary>
     /// Current alpha value (0-255)
     /// </summary>
-    public byte A { get; private set; }
+    public byte A { get; }
 
     /// <summary>
     /// Current red value (0-255)
     /// </summary>
-    public byte R { get; private set; }
+    public byte R { get; }
 
     /// <summary>
     /// Current green value (0-255)
     /// </summary>
-    public byte G { get; private set; }
+    public byte G { get; }
 
     /// <summary>
     /// Current blue value (0-255)
     /// </summary>
-    public byte B { get; private set; }
+    public byte B { get; }
 
     private float hue;
     private float saturation;
@@ -69,45 +74,23 @@ public struct Color
     /// <summary>
     /// Hue of current color (0-360.0)
     /// </summary>
-    public float Hue
-    {
-        get
-        {
-            if (hue == -1)
-            {
-                ConvertToHsb(R, G, B, out hue, out saturation, out brightness);
-            }
-            return hue;
-        }
-    }
+    public float Hue { get { ComputeHSB(); return hue; } }
 
     /// <summary>
     /// Saturation of color (0-1.0)
     /// </summary>
-    public float Saturation
-    {
-        get
-        {
-            if (saturation == -1)
-            {
-                ConvertToHsb(R, G, B, out hue, out saturation, out brightness);
-            }
-            return saturation;
-        }
-    }
+    public float Saturation { get { ComputeHSB(); return saturation; } }
 
     /// <summary>
     /// Brightness of color (0-1.0)
     /// </summary>
-    public float Brightness
+    public float Brightness { get { ComputeHSB(); return brightness; } }
+
+    private void ComputeHSB()
     {
-        get
+        if (hue == -1)
         {
-            if (brightness == -1)
-            {
-                ConvertToHsb(R, G, B, out hue, out saturation, out brightness);
-            }
-            return brightness;
+            ConvertToHsb(R, G, B, out hue, out saturation, out brightness);
         }
     }
 
