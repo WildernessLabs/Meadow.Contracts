@@ -19,7 +19,7 @@ public abstract class DigitalInterruptPortBase : DigitalInputPortBase, IDigitalI
     /// Gets or sets a value indicating the type of interrupt monitoring this input.
     /// </summary>
     /// <value><c>true</c> if interrupt enabled; otherwise, <c>false</c>.</value>
-    public InterruptMode InterruptMode { get; protected set; }
+    public abstract InterruptMode InterruptMode { get; set; }
 
     /// <summary>
     /// Gets or sets the debounce duration for the port
@@ -35,17 +35,13 @@ public abstract class DigitalInterruptPortBase : DigitalInputPortBase, IDigitalI
     /// </summary>
     /// <param name="pin">The pin associated with the port.</param>
     /// <param name="channel">The channel information for the port.</param>
-    /// <param name="interruptMode"></param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="pin"/> or <paramref name="channel"/> is <c>null</c>.</exception>
     protected DigitalInterruptPortBase(
         IPin pin,
-        IDigitalChannelInfo channel,
-        InterruptMode interruptMode = InterruptMode.None
+        IDigitalChannelInfo channel
         )
         : base(pin, channel)
     {
-        // TODO: check interrupt mode (i.e. if != none, make sure channel info agrees)
-        InterruptMode = interruptMode;
     }
 
     /// <summary>

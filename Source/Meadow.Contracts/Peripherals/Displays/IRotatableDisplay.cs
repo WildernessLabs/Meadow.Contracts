@@ -3,7 +3,7 @@
 /// <summary>
 /// Represents a display that supports rotation in 90 degree increments
 /// </summary>
-public interface IRotatableDisplay
+public interface IRotatableDisplay : IPixelDisplay
 {
     /// <summary>
     /// Set the rotation of the display

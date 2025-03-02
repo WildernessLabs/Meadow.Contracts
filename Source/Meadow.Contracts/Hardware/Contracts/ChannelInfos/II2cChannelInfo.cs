@@ -24,5 +24,9 @@
         /// Gets the I2C channel function type.
         /// </summary>
         I2cChannelFunctionType ChannelFunction { get; }
+        /// <summary>
+        /// Gets the system bus number for the channel
+        /// </summary>
+        int BusNumber { get; }
     }
 }

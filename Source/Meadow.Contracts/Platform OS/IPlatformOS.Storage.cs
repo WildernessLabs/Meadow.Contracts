@@ -49,9 +49,17 @@ public partial interface IPlatformOS
     public abstract class FileSystemInfo
     {
         /// <summary>
+        /// Raises the ExternalStorageEvent event
+        /// </summary>
+        protected void RaiseExternalStorageEvent(IExternalStorage storage, ExternalStorageState state)
+        {
+            ExternalStorageEvent?.Invoke(storage, state);
+        }
+
+        /// <summary>
         /// Raised when a change on an external storage device is detected
         /// </summary>
-        public event ExternalStorageEventHandler ExternalStorageEvent = delegate { };
+        public event ExternalStorageEventHandler? ExternalStorageEvent = null;
 
         /// <summary>
         /// A list of available storage devices

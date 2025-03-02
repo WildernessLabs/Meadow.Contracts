@@ -82,12 +82,30 @@ public class NmeaSentence
         return data + "*" + ChecksumCalculator.XOR(data);
     }
 
-    //public bool DebugMode { get; set; } = false;
-
     /// <summary>
     /// Creates a new, empty NMEA sentence.
     /// </summary>
     public NmeaSentence() { }
+
+    /// <summary>
+    /// Tries to creates a <see cref="NmeaSentence"/> from a string.
+    /// </summary>
+    /// <param name="sentenceString">A NMEA sentence string.</param>
+    /// <param name="sentence">The parsed <see cref="NmeaSentence"/></param>
+    /// <returns>True on success, otherwise False</returns>
+    public static bool TryParse(string sentenceString, out NmeaSentence? sentence)
+    {
+        try
+        {
+            sentence = From(sentenceString);
+            return true;
+        }
+        catch
+        {
+            sentence = null;
+            return false;
+        }
+    }
 
     /// <summary>
     /// Creates a <see cref="NmeaSentence"/> from a string. Will parse the prefix, data

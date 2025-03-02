@@ -12,7 +12,7 @@ public interface ICounter
     /// <summary>
     /// Gets the current Count
     /// </summary>
-    long Count { get; }
+    ulong Count { get; }
     /// <summary>
     /// Resets the Count to zero
     /// </summary>

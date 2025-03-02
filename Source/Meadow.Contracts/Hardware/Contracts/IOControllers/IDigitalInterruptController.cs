@@ -66,5 +66,12 @@ namespace Meadow.Hardware
         {
             return CreateDigitalInterruptPort(pin, interruptMode, resistorMode, TimeSpan.Zero, TimeSpan.Zero);
         }
+
+        /// <summary>
+        /// Creates an IDigitalSignalAnalyzer on the specified pin
+        /// </summary>
+        /// <param name="pin">The pin on which to create the analyzer.</param>
+        /// <param name="captureDutyCycle">Whether or not to capture duty cycle. Not capturing it is more efficient and allows faster frequency capture</param>
+        public IDigitalSignalAnalyzer CreateDigitalSignalAnalyzer(IPin pin, bool captureDutyCycle);
     }
 }

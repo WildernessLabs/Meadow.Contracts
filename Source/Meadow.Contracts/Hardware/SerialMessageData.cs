@@ -33,6 +33,5 @@ namespace Meadow.Hardware
         {
             return new SerialMessageData() { Message = encoding.GetBytes(message) };
         }
-
     }
 }

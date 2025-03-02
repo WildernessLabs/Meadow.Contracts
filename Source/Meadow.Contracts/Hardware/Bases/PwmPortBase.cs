@@ -22,21 +22,12 @@ public abstract class PwmPortBase : DigitalPortBase, IPwmPort
     /// </summary>
     /// <param name="pin">The pin associated with the PWM port.</param>
     /// <param name="channel">The PWM channel information for the port.</param>
-    /// <param name="frequency">The PWM frequency.</param>
-    /// <param name="dutyCycle">The initial PWM duty cycle (default is 0).</param>
-    /// <param name="inverted">A value indicating whether the PWM signal is inverted (default is false).</param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="pin"/> or <paramref name="channel"/> is <c>null</c>.</exception>
     protected PwmPortBase(
         IPin pin,
-        IPwmChannelInfo channel,
-        Frequency frequency,
-        float dutyCycle = 0,
-        bool inverted = false
+        IPwmChannelInfo channel
         ) : base(pin, channel)
     {
-        Inverted = inverted;
-        Frequency = frequency;
-        DutyCycle = dutyCycle;
     }
 
     /// <summary>
