@@ -17,11 +17,11 @@ public enum ColorMode : int
     /// </summary>
     Format2bpp = 1 << 1,
     /// <summary>
-    /// 4-bit grayscale
+    /// 2-bit indexed color 
     /// </summary>
     Format2bppIndexed = 1 << 2,
     /// <summary>
-    /// 4-bit grayscale
+    /// 2-bit grayscale
     /// </summary>
     Format2bppGray = 1 << 3,
     /// <summary>
