@@ -15,17 +15,17 @@ public struct Color
     /// <summary>
     /// Get the 2bpp grayscale value for current color
     /// </summary>
-    public readonly byte Color2bppGray => (byte)((0.2989 * R + 0.5870 * G + 0.114 * B) / 85);
+    public readonly byte Color2bppGray => (byte)((0.299 * R + 0.587 * G + 0.114 * B) / 64);
 
     /// <summary>
     /// Get the 4bpp grayscale value for current color
     /// </summary>
-    public readonly byte Color4bppGray => (byte)((0.2989 * R + 0.5870 * G + 0.114 * B) / 17);
+    public readonly byte Color4bppGray => (byte)((0.299 * R + 0.587 * G + 0.114 * B) / 16);
 
     /// <summary>
     /// Get the 8bpp grayscale value for current color
     /// </summary>
-    public readonly byte Color8bppGray => (byte)(0.2989 * R + 0.5870 * G + 0.114 * B);
+    public readonly byte Color8bppGray => (byte)(0.299 * R + 0.587 * G + 0.114 * B);
 
     /// <summary>
     /// Get the 8bpp (332) color value for current color
