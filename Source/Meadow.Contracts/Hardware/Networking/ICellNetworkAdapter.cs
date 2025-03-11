@@ -36,6 +36,10 @@ public interface ICellNetworkAdapter : INetworkAdapter
     const int gnssFixTimeoutInSeconds = 600;
 
     /// <summary>
+    /// Timeout duration in seconds to wait for the command execution.
+    /// </summary>
+    const int atCommandTimeoutInSeconds = 10;
+    /// <summary>
     /// Performs an offline scan for networks detected by the adapter
     /// </summary>
     /// <returns>An array of CellNetwork objects representing available networks.</returns>
@@ -61,4 +65,11 @@ public interface ICellNetworkAdapter : INetworkAdapter
     /// <param name="timeout">The GNSS scan timeout duration in seconds.</param>
     /// <returns>A string containing combined output from GNSS-related AT commands, including NMEA sentences.</returns>
     string FetchGnssAtCmdsOutput(IGnssResult[] resultTypes, int timeout = gnssFixTimeoutInSeconds);
+
+    /// <summary>
+    /// Send an attention (AT) command to the modem.
+    /// </summary>
+    /// <param name="cmd">A valid command to send.</param>
+    /// <param name="timeout">The send timout duration in seconds.</param>
+    void SendAtCmd(string cmd, int timeout = atCommandTimeoutInSeconds);
 }
