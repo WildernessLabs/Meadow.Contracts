@@ -13,7 +13,7 @@ public interface IAnalogInputController : IPinController
     /// <summary>
     /// The default Analog to Digital converter reference voltage.
     /// </summary>
-    public const float DefaultA2DReferenceVoltage = 3.3f;
+    const float DefaultA2DReferenceVoltage = 3.3f;
 
     /// <summary>
     /// Initializes the specified pin to be an AnalogInput and returns the
@@ -22,7 +22,7 @@ public interface IAnalogInputController : IPinController
     /// <param name="pin">The pin to create the port on.</param>
     /// <param name="sampleCount">The number of samples to use for input averaging</param>
     /// <returns></returns>
-    public IAnalogInputPort CreateAnalogInputPort(
+    IAnalogInputPort CreateAnalogInputPort(
         IPin pin,
         int sampleCount
     ) => CreateAnalogInputPort(pin, sampleCount, TimeSpan.FromSeconds(1), new Voltage(DefaultA2DReferenceVoltage, Voltage.UnitType.Volts));
@@ -34,7 +34,7 @@ public interface IAnalogInputController : IPinController
     /// <param name="pin">The pin to create the port on.</param>
     /// <param name="sampleCount">The number of samples to use for input averaging</param>
     /// <param name="sampleInterval">The interval between readings</param>
-    public IAnalogInputPort CreateAnalogInputPort(
+    IAnalogInputPort CreateAnalogInputPort(
         IPin pin,
         int sampleCount,
         TimeSpan sampleInterval
@@ -61,4 +61,21 @@ public interface IAnalogInputController : IPinController
     /// </summary>
     /// <param name="pins">The pins to use for the IAnalogInputArray</param>
     IAnalogInputArray CreateAnalogInputArray(params IPin[] pins);
+
+    /// <summary>
+    /// Initializes the specified pin to be an AnalogInput and returns the
+    /// port used to sample the port value.
+    /// </summary>
+    /// <param name="pin">The pin to create the port on.</param>
+    /// <param name="sampleCount">The number of samples to use for input averaging</param>
+    /// <param name="sampleInterval">The interval between readings</param>
+    /// <param name="voltageReference">Reference maximum analog input port
+    /// voltage in Volts. Default is 3.3V.</param>
+    IObservableAnalogInputPort CreateObservableAnalogInputPort(
+        IPin pin,
+        int sampleCount,
+        TimeSpan sampleInterval,
+        Voltage voltageReference
+    );
+
 }
