@@ -9,7 +9,7 @@ public interface IMeadowDevice :
     IDigitalInputOutputController,
     IDigitalInterruptController,
     IBiDirectionalController,
-    IAnalogInputController,
+    IObservableAnalogInputController,
     IPwmOutputController,
     ISerialController,
     ISerialMessageController,

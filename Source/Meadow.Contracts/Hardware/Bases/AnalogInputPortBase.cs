@@ -10,7 +10,7 @@ namespace Meadow.Hardware;
 /// Provides a base implementation for much of the common tasks of 
 /// implementing IAnalogInputPort
 /// </summary>
-public abstract class AnalogInputPortBase : AnalogPortBase, IAnalogInputPort
+public abstract class AnalogInputPortBase : AnalogPortBase, IObservableAnalogInputPort
 {
     /// <summary>
     /// Gets the internal synchronization object for the analog buffer

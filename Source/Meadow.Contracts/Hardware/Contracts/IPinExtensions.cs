@@ -144,9 +144,9 @@ public static class IPinExtensions
     /// <param name="sampleInterval">The interval between each sample.</param>
     /// <param name="referenceVoltage">The reference voltage for the analog input port.</param>
     /// <returns>The created analog input port.</returns>
-    public static IAnalogInputPort CreateAnalogInputPort(this IPin pin, int sampleCount, TimeSpan sampleInterval, Units.Voltage referenceVoltage)
+    public static IObservableAnalogInputPort CreateAnalogInputPort(this IPin pin, int sampleCount, TimeSpan sampleInterval, Units.Voltage referenceVoltage)
     {
-        if (pin.Controller is IAnalogInputController controller)
+        if (pin.Controller is IObservableAnalogInputController controller)
         {
             return controller.CreateAnalogInputPort(pin, sampleCount, sampleInterval, referenceVoltage);
         }
@@ -160,9 +160,9 @@ public static class IPinExtensions
     /// <param name="pin">The pin to create an analog input port for.</param>
     /// <param name="sampleCount">The number of samples to take during each reading (default is 5).</param>
     /// <returns>The created analog input port.</returns>
-    public static IAnalogInputPort CreateAnalogInputPort(this IPin pin, int sampleCount = 5)
+    public static IObservableAnalogInputPort CreateAnalogInputPort(this IPin pin, int sampleCount = 5)
     {
-        if (pin.Controller is IAnalogInputController controller)
+        if (pin.Controller is IObservableAnalogInputController controller)
         {
             return controller.CreateAnalogInputPort(pin, sampleCount);
         }
