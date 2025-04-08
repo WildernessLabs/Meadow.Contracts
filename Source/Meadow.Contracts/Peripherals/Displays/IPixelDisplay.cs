@@ -23,7 +23,7 @@ public interface IPixelDisplay : IDisplay
     /// <param name="mode">The color mode</param>
     public bool IsColorTypeSupported(ColorMode mode)
     {
-        return (SupportedColorModes | mode) != 0;
+        return (SupportedColorModes & mode) != 0;
     }
 
     /// <summary>

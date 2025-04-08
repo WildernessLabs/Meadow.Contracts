@@ -27,7 +27,7 @@ public interface IHealthReporter
     /// <param name="func">Function to calculate metric value.</param>
     /// <returns></returns>
     bool AddMetric(string name, Func<object> func);
-    
+
     /// <summary>
     /// Add a custom health metric.
     /// </summary>

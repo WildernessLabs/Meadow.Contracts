@@ -33,8 +33,8 @@ public interface IMeadowCloudService
     /// <summary>
     /// Gets the current number of items to be sent.
     /// </summary>
-    int QueueCount { get ; } 
-    
+    int QueueCount { get; }
+
     /// <summary>
     /// Sends a log message to the Meadow.Cloud service
     /// </summary>

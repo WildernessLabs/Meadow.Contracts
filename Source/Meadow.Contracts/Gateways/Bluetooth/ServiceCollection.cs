@@ -49,6 +49,14 @@ namespace Meadow.Gateways.Bluetooth
         }
 
         /// <summary>
+        /// Clear the Service Collection.
+        /// </summary> 
+        public void Clear()
+        {
+            m_services.Clear();
+        }
+
+        /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>An enumerator that can be used to iterate through the collection.</returns>
