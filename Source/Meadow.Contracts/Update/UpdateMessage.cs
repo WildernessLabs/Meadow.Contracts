@@ -18,12 +18,12 @@ public class UpdateMessage : UpdateInfo
     /// Gets or sets the download URL of the MPak.
     /// </summary>
     public string MpakDownloadUrl { get; set; } = default!;
-    
+
     /// <summary>
     /// Gets or sets the download URL of the MPak including OS.
     /// </summary>
     public string MpakWithOsDownloadUrl { get; set; } = default!;
-    
+
     /// <summary>
     /// Target OS Version for the update.
     /// </summary>

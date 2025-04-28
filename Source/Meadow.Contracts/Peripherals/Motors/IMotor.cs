@@ -10,6 +10,11 @@ namespace Meadow.Peripherals.Motors;
 public interface IMotor
 {
     /// <summary>
+    /// Raised when the movement state of the motor changes
+    /// </summary>
+    event EventHandler<bool>? StateChanged;
+
+    /// <summary>
     /// Gets the current rotation direction of the motor.
     /// </summary>
     RotationDirection Direction { get; }

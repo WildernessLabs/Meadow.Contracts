@@ -53,23 +53,23 @@ namespace Meadow
             int readBufferSize = 512)
         {
             return name.SerialMessageController?.CreateSerialMessagePort(name, suffixDelimiter, preserveDelimiter, baudRate, dataBits, parity, stopBits, readBufferSize)
-				?? throw new Exception($"Port {name} does not have a valid serial controller");
-		}
+                ?? throw new Exception($"Port {name} does not have a valid serial controller");
+        }
 
-		/// <summary>
-		/// Creates an <see cref="ISerialMessagePort"/> directly from a <see cref="SerialPortName"/> using the current <see cref="IMeadowDevice"/>
-		/// </summary>
-		/// <param name="name"></param>
-		/// <param name="prefixDelimiter"></param>
-		/// <param name="preserveDelimiter"></param>
-		/// <param name="messageLength"></param>
-		/// <param name="baudRate"></param>
-		/// <param name="dataBits"></param>
-		/// <param name="parity"></param>
-		/// <param name="stopBits"></param>
-		/// <param name="readBufferSize"></param>
-		/// <returns></returns>
-		public static ISerialMessagePort CreateSerialMessagePort(
+        /// <summary>
+        /// Creates an <see cref="ISerialMessagePort"/> directly from a <see cref="SerialPortName"/> using the current <see cref="IMeadowDevice"/>
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="prefixDelimiter"></param>
+        /// <param name="preserveDelimiter"></param>
+        /// <param name="messageLength"></param>
+        /// <param name="baudRate"></param>
+        /// <param name="dataBits"></param>
+        /// <param name="parity"></param>
+        /// <param name="stopBits"></param>
+        /// <param name="readBufferSize"></param>
+        /// <returns></returns>
+        public static ISerialMessagePort CreateSerialMessagePort(
             this SerialPortName name,
             byte[] prefixDelimiter,
             bool preserveDelimiter,
@@ -81,7 +81,7 @@ namespace Meadow
             int readBufferSize = 512)
         {
             return name.SerialMessageController?.CreateSerialMessagePort(name, prefixDelimiter, preserveDelimiter, messageLength, baudRate, dataBits, parity, stopBits, readBufferSize)
-				?? throw new Exception($"Port {name} does not have a valid serial controller");
-		}
-	}
+                ?? throw new Exception($"Port {name} does not have a valid serial controller");
+        }
+    }
 }
