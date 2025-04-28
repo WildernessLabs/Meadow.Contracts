@@ -71,5 +71,5 @@ public interface ICellNetworkAdapter : INetworkAdapter
     /// </summary>
     /// <param name="cmd">A valid command to send.</param>
     /// <param name="timeout">The send timout duration in seconds.</param>
-    void SendAtCmd(string cmd, int timeout = atCommandTimeoutInSeconds);
+    void SendATCommand(string cmd, int timeout = atCommandTimeoutInSeconds);
 }
