@@ -19,7 +19,7 @@
  <PropertyGroup>
     <Authors>Wilderness Labs, Inc</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <LangVersion>12.0</LangVersion>
+    <LangVersion>12</LangVersion>
  </PropertyGroup>
     <ItemGroup>
         <None Include="icon.png" Link="icon.png" Pack="true" PackagePath="" />
