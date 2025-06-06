@@ -49,4 +49,8 @@ public interface IMeadowCloudSettings
     /// Whether or not Meadow.Cloud services are enabled
     /// </summary>
     bool Enabled { get; set; }
+    /// <summary>
+    /// The maximum number of events to queue for cloud delivery before discarding the oldest records
+    /// </summary>
+    int MaxQueueDepth { get; set; }
 }
