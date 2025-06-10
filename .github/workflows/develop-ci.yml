@@ -39,4 +39,4 @@ jobs:
           8.0.x
     
     - name: Build Meadow.Contracts
-      run: dotnet build -c Release Meadow.Contracts/Source/Meadow.Contracts/Meadow.Contracts.sln
+      run: dotnet build -c Release Meadow.Contracts/Source/Meadow.Contracts.sln

@@ -39,13 +39,15 @@ public interface IMeadowCloudService
     /// Sends a log message to the Meadow.Cloud service
     /// </summary>
     /// <param name="cloudLog">The log entry to send</param>
-    Task SendLog(CloudLog cloudLog);
+    /// <param name="throwIfDisabled">Throws an exception if the service is not currently enabled</param>
+    Task SendLog(CloudLog cloudLog, bool throwIfDisabled = true);
 
     /// <summary>
     /// Sends a CloudEvent to the Meadow.Cloud service
     /// </summary>
     /// <param name="cloudEvent"></param>
-    Task SendEvent(CloudEvent cloudEvent);
+    /// <param name="throwIfDisabled">Throws an exception if the service is not currently enabled</param>
+    Task SendEvent(CloudEvent cloudEvent, bool throwIfDisabled = true);
 
     /// <summary>
     /// Sends a CloudEvent to the Meadow.Cloud service
@@ -53,7 +55,7 @@ public interface IMeadowCloudService
     /// <param name="eventId">id used for a set of events.</param>
     /// <param name="description">Description of the event.</param>
     /// <param name="measurements">Dynamic payload of measurements to be recorded.</param>
-    public Task SendEvent(int eventId, string description, Dictionary<string, object> measurements)
+    Task SendEvent(int eventId, string description, Dictionary<string, object> measurements)
     {
         return SendEvent(new CloudEvent()
         {
@@ -94,5 +96,5 @@ public interface IMeadowCloudService
     /// <summary>
     /// Stops the service
     /// </summary>
-    public void Stop();
+    void Stop();
 }

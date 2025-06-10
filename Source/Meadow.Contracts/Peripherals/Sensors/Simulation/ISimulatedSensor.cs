@@ -3,6 +3,25 @@
 namespace Meadow.Peripherals.Sensors;
 
 /// <summary>
+/// Represents a simulated sensor for a specific unit type with customizable simulation behaviors
+/// </summary>
+public interface ISimulatedSensor<TUNIT> : ISimulatedSensor
+    where TUNIT : struct
+{
+    /// <inheritdoc/>
+    new Type ValueType => typeof(TUNIT);
+
+    /// <summary>
+    /// The minimum unit value simulation can produce
+    /// </summary>
+    TUNIT MinimumSimulatedValue { get; set; }
+    /// <summary>
+    /// The maximum unit value simulation can produce
+    /// </summary>
+    TUNIT MaximumSimulatedValue { get; set; }
+}
+
+/// <summary>
 /// Represents a simulated sensor with customizable simulation behaviors.
 /// </summary>
 public interface ISimulatedSensor

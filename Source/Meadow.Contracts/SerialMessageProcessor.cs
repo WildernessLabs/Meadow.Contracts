@@ -94,6 +94,18 @@ public class SerialMessageProcessor
     }
 
     /// <summary>
+    /// Changes the parsing delimiter
+    /// </summary>
+    /// <param name="delimiter">The new delimiter to use</param>
+    public void ChangeDelimiter(byte[] delimiter)
+    {
+        lock (msgParseLock)
+        {
+            messageDelimiterTokens = delimiter;
+        }
+    }
+
+    /// <summary>
     /// </summary>
     /// <param name="data">returns true if end of stream (suffix delimiter found at end, or prefix found without new prefix)</param>
     public void Process(byte[] data)

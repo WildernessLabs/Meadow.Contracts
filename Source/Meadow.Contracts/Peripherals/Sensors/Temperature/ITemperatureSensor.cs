@@ -5,10 +5,6 @@ namespace Meadow.Peripherals.Sensors;
 /// <summary>
 /// Temperature sensor interface requirements.
 /// </summary>
-public interface ITemperatureSensor : ISamplingSensor<Temperature>
+public interface ITemperatureSensor : ISensor<Temperature>
 {
-    /// <summary>
-    /// Last value read from the Temperature sensor.
-    /// </summary>
-    public Temperature? Temperature { get; }
 }

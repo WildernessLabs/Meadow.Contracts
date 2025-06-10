@@ -17,5 +17,5 @@ public interface ISensor<T> : ISensor
     /// <summary>
     /// Convenience method to get the current sensor reading
     /// </summary>
-    public Task<T> Read();
+    Task<T> Read();
 }

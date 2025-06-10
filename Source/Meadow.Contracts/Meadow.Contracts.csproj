@@ -1,6 +1,5 @@
 <Project Sdk="Meadow.Sdk/1.1.0">
  <PropertyGroup>
-    <Version>1.11.0</Version>
    <TargetFramework>netstandard2.1</TargetFramework>
    <OutputType>Library</OutputType>
    <AssemblyName>Meadow.Contracts</AssemblyName>   
@@ -20,7 +19,7 @@
  <PropertyGroup>
     <Authors>Wilderness Labs, Inc</Authors>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
  </PropertyGroup>
     <ItemGroup>
         <None Include="icon.png" Link="icon.png" Pack="true" PackagePath="" />
