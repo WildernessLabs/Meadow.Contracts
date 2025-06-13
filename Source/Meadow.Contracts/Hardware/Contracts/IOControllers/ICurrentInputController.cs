@@ -1,4 +1,6 @@
-﻿namespace Meadow.Hardware;
+﻿using System.Threading.Tasks;
+
+namespace Meadow.Hardware;
 
 /// <summary>
 /// Defines the contract for current input controllers on Temco Controls T3 modules.
@@ -11,5 +13,5 @@ public interface ICurrentInputController
     /// </summary>
     /// <param name="pin">The physical pin to associate with the current input port.</param>
     /// <returns>A new ICurrentInputPort instance configured for the specified pin.</returns>
-    ICurrentInputPort CreateCurrentInputPort(IPin pin);
+    Task<ICurrentInputPort> CreateCurrentInputPort(IPin pin);
 }
