@@ -1,4 +1,6 @@
-﻿namespace Meadow.Hardware;
+﻿using System.Threading.Tasks;
+
+namespace Meadow.Hardware;
 
 /// <summary>
 /// Defines the contract for voltage input controllers on Temco Controls T3 modules.
@@ -11,5 +13,5 @@ public interface IVoltageInputController
     /// </summary>
     /// <param name="pin">The physical pin to associate with the voltage input port.</param>
     /// <returns>A new IVoltageInputPort instance configured for the specified pin.</returns>
-    IVoltageInputPort CreateVoltageInputPort(IPin pin);
+    Task<IVoltageInputPort> CreateVoltageInputPort(IPin pin);
 }
