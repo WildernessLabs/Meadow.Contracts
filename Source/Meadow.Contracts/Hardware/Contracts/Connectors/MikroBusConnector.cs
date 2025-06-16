@@ -1,4 +1,5 @@
 ﻿using Meadow.Units;
+using System;
 using static Meadow.Hardware.MikroBusConnector;
 
 namespace Meadow.Hardware;
@@ -7,7 +8,7 @@ namespace Meadow.Hardware;
 /// </summary>
 public partial class MikroBusConnector : Connector<MikroBusPinDefinitions>
 {
-    private readonly SerialPortName _serialPortName;
+    private readonly SerialPortName? _serialPortName;
     private readonly I2cBusMapping _i2cBusMapping;
     private readonly SpiBusMapping _spiBusMapping;
     private ISpiBus? _spi;
@@ -16,7 +17,7 @@ public partial class MikroBusConnector : Connector<MikroBusPinDefinitions>
     /// <summary>
     /// The serial port name
     /// </summary>
-    public SerialPortName SerialPortName => _serialPortName;
+    public SerialPortName SerialPortName => _serialPortName ?? throw new NotSupportedException("This connector does not have serial port support");
 
     /// <summary>
     /// The set of MikroBus pin names
@@ -83,7 +84,7 @@ public partial class MikroBusConnector : Connector<MikroBusPinDefinitions>
     /// <param name="spiBusMapping">The mapping for the connector's SPI bus</param>
     public MikroBusConnector(string name,
         PinMapping mapping,
-        SerialPortName hostSerialPort,
+        SerialPortName? hostSerialPort,
         I2cBusMapping i2CBusMapping,
         SpiBusMapping spiBusMapping)
         : base(name, new MikroBusPinDefinitions(mapping))
@@ -103,7 +104,7 @@ public partial class MikroBusConnector : Connector<MikroBusPinDefinitions>
     /// <param name="readBufferSize">The size, in bytes, of the read buffer. Default is 1024.</param>
     public ISerialPort CreateSerialPort(int baudRate = 9600, int dataBits = 8, Parity parity = Parity.None, StopBits stopBits = StopBits.One, int readBufferSize = 1024)
     {
-        return _serialPortName.CreateSerialPort(baudRate, dataBits, parity, stopBits, readBufferSize);
+        return SerialPortName.CreateSerialPort(baudRate, dataBits, parity, stopBits, readBufferSize);
     }
 
     /// <summary>
@@ -125,7 +126,7 @@ public partial class MikroBusConnector : Connector<MikroBusPinDefinitions>
         StopBits stopBits = StopBits.One,
         int readBufferSize = 512)
     {
-        return _serialPortName.CreateSerialMessagePort(suffixDelimiter, preserveDelimiter, baudRate, dataBits, parity, stopBits, readBufferSize)!;
+        return SerialPortName.CreateSerialMessagePort(suffixDelimiter, preserveDelimiter, baudRate, dataBits, parity, stopBits, readBufferSize)!;
     }
 
     /// <summary>
@@ -149,7 +150,7 @@ public partial class MikroBusConnector : Connector<MikroBusPinDefinitions>
         StopBits stopBits = StopBits.One,
         int readBufferSize = 512)
     {
-        return _serialPortName.CreateSerialMessagePort(prefixDelimiter, preserveDelimiter, messageLength, baudRate, dataBits, parity, stopBits, readBufferSize)!;
+        return SerialPortName.CreateSerialMessagePort(prefixDelimiter, preserveDelimiter, messageLength, baudRate, dataBits, parity, stopBits, readBufferSize)!;
     }
 
     /// <summary>
