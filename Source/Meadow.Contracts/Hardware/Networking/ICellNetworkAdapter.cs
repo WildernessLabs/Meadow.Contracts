@@ -38,7 +38,7 @@ public interface ICellNetworkAdapter : INetworkAdapter
     /// <summary>
     /// Timeout duration in seconds to wait for the command execution.
     /// </summary>
-    const int atCommandTimeoutInSeconds = 10;
+    const int ATCommandTimeoutInSeconds = 30;
     /// <summary>
     /// Performs an offline scan for networks detected by the adapter
     /// </summary>
@@ -71,5 +71,6 @@ public interface ICellNetworkAdapter : INetworkAdapter
     /// </summary>
     /// <param name="cmd">A valid command to send.</param>
     /// <param name="timeout">The send timout duration in seconds.</param>
-    void SendATCommand(string cmd, int timeout = atCommandTimeoutInSeconds);
+    /// <returns>A string containing the attention command reponse</returns>
+    string SendATCommand(string cmd, int timeout = ATCommandTimeoutInSeconds);
 }
