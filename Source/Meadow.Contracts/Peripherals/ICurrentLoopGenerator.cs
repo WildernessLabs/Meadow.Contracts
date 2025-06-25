@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace Meadow.Hardware;
 
 /// <summary>
-/// Interface for transmitting current loop signals to emulate industrial sensors
+/// Interface for transmitting current loop signals for industrial sensors
 /// </summary>
 public interface ICurrentLoopGenerator
 {
