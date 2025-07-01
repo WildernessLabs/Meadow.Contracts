@@ -2,6 +2,7 @@
 using static Meadow.Hardware.UartConnector;
 
 namespace Meadow.Hardware;
+
 /// <summary>
 /// Represents a connector for Uart (serial) communication
 /// </summary>
