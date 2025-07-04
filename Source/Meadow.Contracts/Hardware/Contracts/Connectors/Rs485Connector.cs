@@ -84,7 +84,7 @@ public abstract class Rs485Connector : IConnector, IPinController
     /// <param name="readBufferSize">The size, in bytes, of the buffer used for reading data from the serial port. Defaults to 1024.</param>
     /// <returns>An instance of <see cref="ISerialPort"/> representing the configured serial port.</returns>
     /// <exception cref="ArgumentException">Thrown if the serial port is already open with a different baud rate.</exception>
-    public ISerialPort CreateSerialPort(int baudRate = 9600, int dataBits = 8, Parity parity = Parity.None, StopBits stopBits = StopBits.One, int readBufferSize = 1024)
+    public virtual ISerialPort CreateSerialPort(int baudRate = 9600, int dataBits = 8, Parity parity = Parity.None, StopBits stopBits = StopBits.One, int readBufferSize = 1024)
     {
         if (_serialPort == null)
         {
