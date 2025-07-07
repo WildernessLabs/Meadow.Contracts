@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Meadow.Update;
 
@@ -7,7 +8,8 @@ namespace Meadow.Update;
 /// </summary>
 /// <param name="updateService">The IUpdateService raising the event</param>
 /// <param name="info">The UpdateInfo associated with the event</param>
-public delegate void UpdateEventHandler(IUpdateService updateService, UpdateInfo info);
+/// <param name="cancel">Use to abort the update</param>
+public delegate void UpdateEventHandler(IUpdateService updateService, UpdateInfo info, CancellationTokenSource cancel);
 
 /// <summary>
 /// Provides an abstraction for the Meadow Update Service
@@ -46,20 +48,7 @@ public interface IUpdateService
     /// Gets the current state of the service
     /// </summary>
     UpdateState State { get; }
-    /// <summary>
-    /// Retrieves an update package from the defined update server with the provided parameters
-    /// </summary>
-    /// <param name="updateInfo">The UpdateInfo describing the update to retrieve</param>
-    void RetrieveUpdate(UpdateInfo updateInfo);
-    /// <summary>
-    /// Applies an already-retrieved update package with the provided parameters
-    /// </summary>
-    /// <param name="updateInfo">The UpdateInfo describing the update to apply</param>
-    void ApplyUpdate(UpdateInfo updateInfo);
-    /// <summary>
-    /// Clears all locally stored update package information
-    /// </summary>
-    void ClearUpdates();
+
     /// <summary>
     /// Stops the service
     /// </summary>
