@@ -9,6 +9,10 @@ namespace Meadow.Peripherals.Displays;
 public enum ColorMode : int
 {
     /// <summary>
+    /// Unknown color mode, used when the color mode is not known or not set
+    /// </summary>
+    FormatUnknown = 0,
+    /// <summary>
     /// 1-bit color
     /// </summary>
     Format1bpp = 1 << 0,
