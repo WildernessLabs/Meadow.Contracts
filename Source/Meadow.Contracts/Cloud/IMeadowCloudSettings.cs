@@ -53,4 +53,8 @@ public interface IMeadowCloudSettings
     /// The maximum number of events to queue for cloud delivery before discarding the oldest records
     /// </summary>
     int MaxQueueDepth { get; set; }
+    /// <summary>
+    /// The maximum time (in minutes) to allow lack of connection from the cloud server
+    /// </summary>
+    int MaximumDisconnectTimeMinutes { get; set; }
 }
