@@ -39,9 +39,14 @@ public struct AllocationInfo
 public partial interface IPlatformOS : IPowerController
 {
     /// <summary>
+    /// Event called when the time is changed.
+    /// </summary>
+    event TimeChangedEventHandler TimeChanged;
+
+    /// <summary>
     /// The command line arguments provided when the Meadow application was launched
     /// </summary>
-    public string[]? LaunchArguments { get; }
+    string[]? LaunchArguments { get; }
 
     /// <summary>
     /// Initializes platform-specific OS features
@@ -64,18 +69,18 @@ public partial interface IPlatformOS : IPowerController
     /// <summary>
     /// Gets the OS INtpClient instance
     /// </summary>
-    public INtpClient NtpClient { get; }
+    INtpClient NtpClient { get; }
 
     /// <summary>
     /// Gets a list of currently available serial ports
     /// </summary>
-    public SerialPortName[] GetSerialPortNames();
+    SerialPortName[] GetSerialPortNames();
 
     /// <summary>
     /// Finds a platform serial port name by either friendly or system name
     /// </summary>
     /// <param name="portName"></param>
-    public SerialPortName? GetSerialPortName(string portName)
+    SerialPortName? GetSerialPortName(string portName)
     {
         return GetSerialPortNames().FirstOrDefault(
             p => string.Compare(p.FriendlyName, portName, StringComparison.OrdinalIgnoreCase) == 0
@@ -86,12 +91,12 @@ public partial interface IPlatformOS : IPowerController
     /// Sets the platform OS clock
     /// </summary>
     /// <param name="dateTime"></param>
-    public void SetClock(DateTime dateTime);
+    void SetClock(DateTime dateTime);
 
     /// <summary>
     /// Retrieves the current usage (as a percentage in the range of 0-100) for each processor/core
     /// </summary>
-    public int[] GetProcessorUtilization();
+    int[] GetProcessorUtilization();
 
     /// <summary>
     /// Sets the server certificate validation mode for SSL/TLS protocols
@@ -100,10 +105,10 @@ public partial interface IPlatformOS : IPowerController
     /// Required for mandatory validation</param>
     /// <exception cref="ArgumentException">Thrown when an invalid validation mode is provided</exception>
     /// <exception cref="Exception">Thrown when there is an error setting the validation mode</exception>
-    public void SetServerCertificateValidationMode(ServerCertificateValidationMode authmode);
+    void SetServerCertificateValidationMode(ServerCertificateValidationMode authmode);
 
     /// <summary>
     /// Retrieves memory allocation statistics from the OS
     /// </summary>
-    public AllocationInfo GetMemoryAllocationInfo();
+    AllocationInfo GetMemoryAllocationInfo();
 }
