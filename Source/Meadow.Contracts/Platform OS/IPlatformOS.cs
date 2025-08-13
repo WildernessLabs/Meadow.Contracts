@@ -111,4 +111,6 @@ public partial interface IPlatformOS : IPowerController
     /// Retrieves memory allocation statistics from the OS
     /// </summary>
     AllocationInfo GetMemoryAllocationInfo();
+
+    internal void RaiseTimeChanged(DateTime utcTime);
 }
