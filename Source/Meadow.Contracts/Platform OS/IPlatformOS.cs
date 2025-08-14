@@ -116,5 +116,5 @@ public partial interface IPlatformOS : IPowerController
     /// Raises the TimeChanged event with the specified UTC time.
     /// </summary>
     /// <param name="utcTime"> The UTC time to raise the event with.</param>
-    void RaiseTimeChanged(DateTime utcTime);
+    internal void RaiseTimeChanged(DateTime utcTime);
 }
