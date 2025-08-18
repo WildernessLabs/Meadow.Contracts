@@ -11,6 +11,13 @@ namespace Meadow.Cloud;
 public interface IMeadowCloudService
 {
     /// <summary>
+    /// Occurs when a message is successfully sent.
+    /// </summary>
+    /// <remarks>Subscribe to this event to be notified whenever a message is sent. The event handler receives
+    /// an <see cref="EventArgs"/> object, which does not contain additional data for this event.</remarks>
+    event EventHandler? MessageSent;
+
+    /// <summary>
     /// Event raised when an error in communicating with Meadow Cloud occurrs
     /// </summary>
     event EventHandler<Exception>? ErrorOccurred;
