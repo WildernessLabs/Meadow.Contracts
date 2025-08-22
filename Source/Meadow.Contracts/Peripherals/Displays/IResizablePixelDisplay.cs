@@ -6,7 +6,12 @@
 public interface IResizablePixelDisplay : IPixelDisplay
 {
     /// <summary>
-    /// Rsizes the display
+    /// The rendering scale of the display
+    /// </summary>
+    public float DisplayScale { get; }
+
+    /// <summary>
+    /// Resizes the display
     /// </summary>
     /// <param name="width">The new display width</param>
     /// <param name="height">The new display height</param>
