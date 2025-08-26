@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Meadow.Hardware;
 
@@ -142,4 +144,54 @@ public interface ISerialPort : IDisposable
     /// <returns></returns>
     //int Write(Span<byte> buffer, int offset, int count);
     int Write(byte[] buffer, int offset, int count);
+
+    /// <summary>
+    /// Asynchronously writes data to the serial port.
+    /// </summary>
+    /// <param name="buffer">The byte array that contains the data to write to the port.</param>
+    /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
+    /// <returns>A task that represents the asynchronous write operation. The value of the TResult parameter contains the number of bytes written.</returns>
+    Task<int> WriteAsync(byte[] buffer, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Asynchronously writes a specified number of bytes to the serial port using data from a buffer.
+    /// </summary>
+    /// <param name="buffer">The byte array that contains the data to write to the port.</param>
+    /// <param name="offset">The zero-based byte offset in the buffer parameter at which to begin copying bytes to the port.</param>
+    /// <param name="count">The number of bytes to write.</param>
+    /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
+    /// <returns>A task that represents the asynchronous write operation. The value of the TResult parameter contains the number of bytes written.</returns>
+    Task<int> WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Asynchronously reads data from the SerialPort input buffer.
+    /// </summary>
+    /// <param name="buffer">The byte array to write the input to.</param>
+    /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
+    /// <returns>A task that represents the asynchronous read operation. The value of the TResult parameter contains the number of bytes read.</returns>
+    Task<int> ReadAsync(byte[] buffer, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Asynchronously reads a number of bytes from the SerialPort input buffer and writes those bytes into a byte array at the specified offset.
+    /// </summary>
+    /// <param name="buffer">The byte array to write the input to.</param>
+    /// <param name="offset">The offset in buffer at which to write the bytes.</param>
+    /// <param name="count">The maximum number of bytes to read. Fewer bytes are read if count is greater than the number of bytes in the input buffer.</param>
+    /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
+    /// <returns>A task that represents the asynchronous read operation. The value of the TResult parameter contains the number of bytes read.</returns>
+    Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Asynchronously reads the entire serial port buffer into an array of bytes.
+    /// </summary>
+    /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
+    /// <returns>A task that represents the asynchronous read operation. The value of the TResult parameter contains the bytes read.</returns>
+    Task<byte[]> ReadAllAsync(CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Asynchronously reads one byte from the SerialPort input buffer.
+    /// </summary>
+    /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
+    /// <returns>A task that represents the asynchronous read operation. The value of the TResult parameter contains the byte, cast to an Int32, or -1 if no data is available.</returns>
+    Task<int> ReadByteAsync(CancellationToken cancellationToken = default);
 }
