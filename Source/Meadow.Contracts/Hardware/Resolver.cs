@@ -62,6 +62,11 @@ namespace Meadow
         /// Retrieves the current IJsonSerializer instance
         /// </summary>
         public static IJsonSerializer JsonSerializer => Services?.Get<IJsonSerializer>();
+
+        /// <summary>
+        /// Gets the current instance of the health reporter service.
+        /// </summary>
+        public static IHealthReporter? HealthReporter => Services?.Get<IHealthReporter>();
 #pragma warning restore CS8603
     }
 }
