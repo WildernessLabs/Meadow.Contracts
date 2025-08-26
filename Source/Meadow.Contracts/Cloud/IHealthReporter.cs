@@ -35,4 +35,9 @@ public interface IHealthReporter
     /// <param name="func">Function to calculate the metric value.</param>
     /// <returns></returns>
     bool AddMetric(string name, Func<Task<object>> func);
+
+    /// <summary>
+    /// Gets the enabled state of the HealthReporter
+    /// </summary>
+    bool IsEnabled { get; }
 }
