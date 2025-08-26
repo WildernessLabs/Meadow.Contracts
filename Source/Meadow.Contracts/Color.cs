@@ -101,6 +101,27 @@ public struct Color
     /// <param name="green">green component of color (0-255)</param>
     /// <param name="blue">blue component of color (0-255)</param>
     /// <param name="alpha">transparency of color (0-255)</param>
+    public Color(int red, int green, int blue, int alpha = 255)
+    {
+        if (red < 0 || red > 255) throw new ArgumentOutOfRangeException(nameof(red), "Value must be between 0 and 255");
+        if (green < 0 || green > 255) throw new ArgumentOutOfRangeException(nameof(green), "Value must be between 0 and 255");
+        if (blue < 0 || blue > 255) throw new ArgumentOutOfRangeException(nameof(blue), "Value must be between 0 and 255");
+
+        R = (byte)red;
+        G = (byte)green;
+        B = (byte)blue;
+        A = (byte)alpha;
+
+        hue = saturation = brightness = -1;
+    }
+
+    /// <summary>
+    /// Create a color struct
+    /// </summary>
+    /// <param name="red">red component of color (0-255)</param>
+    /// <param name="green">green component of color (0-255)</param>
+    /// <param name="blue">blue component of color (0-255)</param>
+    /// <param name="alpha">transparency of color (0-255)</param>
     public Color(byte red, byte green, byte blue, byte alpha = 255)
     {
         R = red;
@@ -117,9 +138,16 @@ public struct Color
     /// <param name="red">red component of color (0-1)</param>
     /// <param name="green">green component of color (0-1)</param>
     /// <param name="blue">blue component of color (0-1)</param>
-    public Color(float red, float green, float blue) :
-        this((byte)(red * 255), (byte)(green * 255), (byte)(blue * 255), 255)
+    public Color(float red, float green, float blue)
     {
+        if (red < 0 || red > 1) throw new ArgumentOutOfRangeException(nameof(red), "Value must be between 0 and 1");
+        if (green < 0 || green > 1) throw new ArgumentOutOfRangeException(nameof(green), "Value must be between 0 and 1");
+        if (blue < 0 || blue > 1) throw new ArgumentOutOfRangeException(nameof(blue), "Value must be between 0 and 1");
+        R = (byte)(255 * red);
+        G = (byte)(255 * green);
+        B = (byte)(255 * blue);
+        A = 255;
+        hue = saturation = brightness = -1;
     }
 
     /// <summary>
@@ -173,12 +201,12 @@ public struct Color
         return new Color(Hue, saturation, Brightness, A);
     }
 
-    static void ConvertToHsb(byte r, byte g, byte b, out float h, out float s, out float l)
+    private static void ConvertToHsb(byte r, byte g, byte b, out float h, out float s, out float l)
     {
         ConvertToHsb(r / 255.0f, g / 255.0f, b / 255.0f, out h, out s, out l);
     }
 
-    static void ConvertToHsb(float r, float g, float b, out float h, out float s, out float l)
+    private static void ConvertToHsb(float r, float g, float b, out float h, out float s, out float l)
     {
         float v = Math.Max(r, g);
         v = Math.Max(v, b);
@@ -280,7 +308,7 @@ public struct Color
         return EqualsInner(this, other);
     }
 
-    static bool EqualsInner(Color color1, Color color2)
+    private static bool EqualsInner(Color color1, Color color2)
     {
         return color1.R == color2.R && color1.G == color2.G && color1.B == color2.B && color1.A == color2.A;
     }
@@ -294,7 +322,7 @@ public struct Color
         return "[Color: A={" + A + "}, R={" + R + "}, G={" + G + "}, B={" + B + "}, Hue={" + Hue + "}, Saturation={" + Saturation + "}, Brightness={" + Brightness + "}]";
     }
 
-    static uint ToHex(char c)
+    private static uint ToHex(char c)
     {
         ushort x = c;
         if (x >= '0' && x <= '9')
@@ -310,7 +338,7 @@ public struct Color
         return 0;
     }
 
-    static uint ToHexD(char c)
+    private static uint ToHexD(char c)
     {
         var j = ToHex(c);
         return (j << 4) | j;
@@ -648,7 +676,7 @@ public struct Color
     /// <summary>
     /// Clamp a value to 0 to 1
     /// </summary>
-    static float Clamp(float i)
+    private static float Clamp(float i)
     {
         if (i < 0) return 0;
         if (i > 1) return 1;
