@@ -59,4 +59,8 @@ public interface IMeadowCloudSettings
     /// The maximum time (in minutes) to allow lack of connection from the cloud server
     /// </summary>
     int MaximumDisconnectTimeMinutes { get; set; }
+    /// <summary>
+    /// Gets the type of telemetry storage used.  Defaults to in-memory.
+    /// </summary>
+    string TelemetryStore { get; set; }
 }
