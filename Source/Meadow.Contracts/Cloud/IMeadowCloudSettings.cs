@@ -49,12 +49,18 @@ public interface IMeadowCloudSettings
     /// Whether or not Meadow.Cloud services are enabled
     /// </summary>
     bool Enabled { get; set; }
+    /*
     /// <summary>
     /// The maximum number of events to queue for cloud delivery before discarding the oldest records
     /// </summary>
     int MaxQueueDepth { get; set; }
+    */
     /// <summary>
     /// The maximum time (in minutes) to allow lack of connection from the cloud server
     /// </summary>
     int MaximumDisconnectTimeMinutes { get; set; }
+    /// <summary>
+    /// Gets the type of telemetry storage used.  Defaults to in-memory.
+    /// </summary>
+    string TelemetryStore { get; set; }
 }

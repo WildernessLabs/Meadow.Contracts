@@ -47,7 +47,8 @@ public interface IMeadowCloudService
     /// </summary>
     /// <param name="cloudLog">The log entry to send</param>
     /// <param name="throwIfDisabled">Throws an exception if the service is not currently enabled</param>
-    Task SendLog(CloudLog cloudLog, bool throwIfDisabled = true);
+    /// <param name="priority">The priority level for the log event</param>
+    Task SendLog(CloudLog cloudLog, CloudTelemetryPriority priority, bool throwIfDisabled = true);
 
     /// <summary>
     /// Sends a CloudEvent to the Meadow.Cloud service
@@ -89,7 +90,8 @@ public interface IMeadowCloudService
     /// <param name="logLevel">The log level for the log event</param>
     /// <param name="message">The message property for the log event</param>
     /// <param name="exceptionMessage">Optional exception message data</param>
-    Task SendLog(string logLevel, string message, string? exceptionMessage = null)
+    /// <param name="priority">The priority level for the log event</param>
+    Task SendLog(string logLevel, string message, string? exceptionMessage = null, CloudTelemetryPriority priority = CloudTelemetryPriority.Normal)
     {
         return SendLog(new CloudLog()
         {
@@ -97,7 +99,7 @@ public interface IMeadowCloudService
             Message = message,
             Timestamp = DateTime.UtcNow,
             Exception = exceptionMessage ?? string.Empty
-        });
+        }, priority);
     }
 
     /// <summary>
