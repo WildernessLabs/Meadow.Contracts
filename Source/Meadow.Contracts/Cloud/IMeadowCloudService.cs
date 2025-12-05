@@ -103,6 +103,11 @@ public interface IMeadowCloudService
     }
 
     /// <summary>
+    /// Starts the service
+    /// </summary>
+    void Start();
+
+    /// <summary>
     /// Stops the service
     /// </summary>
     void Stop();

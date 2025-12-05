@@ -1,36 +1,11 @@
-﻿using Meadow.Hardware;
+﻿using Meadow.Cloud;
+using Meadow.Hardware;
 using Meadow.Units;
+using Meadow.Update;
 using System;
 using System.Linq;
 
 namespace Meadow;
-
-/// <summary>
-/// A collection of device memory-allocation statistics
-/// </summary>
-public struct AllocationInfo
-{
-    /// <summary>
-    /// This is the total size of memory allocated for use by malloc in bytes. 
-    /// </summary>
-    public int Arena { get; set; }
-    /// <summary>
-    /// This is the number of free (not in use) chunks 
-    /// </summary>
-    public int FreeBlocks { get; set; }
-    /// <summary>
-    /// Size of the largest free (not in use) chunk 
-    /// </summary>
-    public int LargestFreeBlock { get; set; }
-    /// <summary>
-    /// This is the total size of memory occupied by chunks handed out by malloc. 
-    /// </summary>
-    public int TotalAllocated { get; set; }
-    /// <summary>
-    /// This is the total size of memory occupied by free (not in use) chunks.
-    /// </summary>
-    public int TotalFree { get; set; }
-}
 
 /// <summary>
 /// Provides an abstraction for OS services such as configuration so that
@@ -59,7 +34,6 @@ public partial interface IPlatformOS : IPowerController
     /// Gets the current CPU temperature
     /// </summary>
     Temperature GetCpuTemperature();
-
 
     /// <summary>
     /// Gets the amount of storage space in use on the primary storage device
@@ -111,4 +85,25 @@ public partial interface IPlatformOS : IPowerController
     /// Retrieves memory allocation statistics from the OS
     /// </summary>
     AllocationInfo GetMemoryAllocationInfo();
+
+    /// <summary>
+    /// Retrieves an instance of the cloud connection service configured with the specified settings.
+    /// </summary>
+    /// <param name="settings">The settings used to configure the cloud connection service. Cannot be null.</param>
+    /// <returns>An instance of <see cref="IMeadowCloudService"/> configured with the provided settings.</returns>
+    IMeadowCloudService GetCloudConnectionService(IMeadowCloudSettings settings);
+
+    /// <summary>
+    /// Retrieves an instance of the cloud-based command service associated with the specified Meadow Cloud service.
+    /// </summary>
+    /// <param name="meadowCloudService">The Meadow Cloud service used to configure and provide access to the command service.</param>
+    /// <returns>An instance of <see cref="ICommandService"/> that facilitates cloud-based command execution.</returns>
+    ICommandService GetCloudCommandService(IMeadowCloudService meadowCloudService);
+
+    /// <summary>
+    /// Retrieves the current implementation of the update service.
+    /// </summary>
+    /// <param name="meadowCloudService">The Meadow cloud service instance.</param>
+    /// <returns>An instance of <see cref="IUpdateService"/> if available; otherwise, <see langword="null"/>.</returns>
+    IUpdateService GetUpdateService(IMeadowCloudService meadowCloudService);
 }

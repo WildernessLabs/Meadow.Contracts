@@ -50,6 +50,13 @@ public interface IUpdateService
     UpdateState State { get; }
 
     /// <summary>
+    /// Starts the operation or process associated with the current instance.
+    /// </summary>
+    /// <remarks>This method initiates the operation and may need to be called explicitly to begin execution. 
+    /// Ensure that all required preconditions are met before invoking this method.</remarks>
+    void Start();
+
+    /// <summary>
     /// Stops the service
     /// </summary>
     void Stop();
