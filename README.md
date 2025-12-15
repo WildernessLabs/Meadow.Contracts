@@ -108,13 +108,15 @@ The library includes interfaces for a wide variety of sensor types:
 Example using a temperature sensor:
 
 ```csharp
+// Note: Requires Meadow.Foundation.Sensors.Atmospheric.Bme280 package
+// Example shown for F7 Feather V2, but works with any Meadow device
 public class MyApp : App<F7FeatherV2>
 {
     ITemperatureSensor temperatureSensor;
 
     public override Task Initialize()
     {
-        // Create a temperature sensor instance
+        // Create a temperature sensor instance (Bme280 from Meadow.Foundation)
         temperatureSensor = new Bme280(Device.CreateI2cBus());
 
         // Subscribe to temperature changes
