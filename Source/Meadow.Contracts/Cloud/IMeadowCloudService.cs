@@ -43,11 +43,6 @@ public interface IMeadowCloudService
     int QueueCount { get; }
 
     /// <summary>
-    /// Gets the date and time when the last successful send operation occurred.
-    /// </summary>
-    DateTimeOffset? LastSuccessfulSend { get; }
-
-    /// <summary>
     /// Sends a log message to the Meadow.Cloud service
     /// </summary>
     /// <param name="cloudLog">The log entry to send</param>
