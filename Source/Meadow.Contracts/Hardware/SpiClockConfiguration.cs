@@ -78,7 +78,7 @@ public class SpiClockConfiguration
         get => _polarity;
         set
         {
-            if (value == Polarity) return;
+            if (value == _polarity) return;
             _polarity = value;
             Changed?.Invoke(this, EventArgs.Empty);
         }
@@ -92,7 +92,7 @@ public class SpiClockConfiguration
         get => _phase;
         set
         {
-            if (value == Phase) return;
+            if (value == _phase) return;
             _phase = value;
             Changed?.Invoke(this, EventArgs.Empty);
         }
@@ -109,7 +109,7 @@ public class SpiClockConfiguration
         get => _speed;
         set
         {
-            if (value == Speed) return;
+            if (value == _speed) return;
             _speed = value;
             Changed?.Invoke(this, EventArgs.Empty);
         }
@@ -123,7 +123,7 @@ public class SpiClockConfiguration
         get => _bitsPerWord;
         set
         {
-            if (value == BitsPerWord) return;
+            if (value == _bitsPerWord) return;
             if (value < 4 || value > 16) throw new ArgumentOutOfRangeException(nameof(value), value, null);
 
             _bitsPerWord = value;
