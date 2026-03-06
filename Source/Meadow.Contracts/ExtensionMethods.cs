@@ -32,7 +32,7 @@ public static class ExtensionMethods
     // TODO: move this into the `CircularBuffer` class? or is it broadly applicable?
     public static int FirstIndexOf<TSource>(this IEnumerable<TSource> source, TSource[] pattern)
     {
-        if (pattern == null) throw new ArgumentNullException();
+        if (pattern == null) throw new ArgumentNullException(nameof(pattern));
 
         int patternLength = pattern.Length;
         int totalLength = source.Count();

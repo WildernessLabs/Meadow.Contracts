@@ -398,7 +398,7 @@ public class CircularBuffer<T> : IEnumerable<T>
                 {
                     return item;
                 }
-                if (++index >= MaxElements - 1) index = 0;
+                if (++index >= MaxElements) index = 0;
             }
 
             return defaultValue;
