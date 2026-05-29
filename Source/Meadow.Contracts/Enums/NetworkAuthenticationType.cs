@@ -44,13 +44,17 @@ public enum NetworkAuthenticationType
     /// Open authentication over 802.11 wireless. Devices are authenticated and can connect to an
     /// access point, but communication with the network requires a matching Wired Equivalent Privacy (WEP) key.
     /// </summary>
-    Open80211 = 6,
+    /// <summary>
+    /// Specifies a Wi-Fi Protected Access 3 (WPA3) algorithm that uses pre-shared keys (PSK). IEEE 802.1X port
+    /// authorization is performed by the supplicant and authenticator. Cipher keys are dynamically derived
+    /// through a pre-shared key that is used on both the supplicant and authenticator.
+    /// </summary>
+    Wpa3Psk = 6,
 
     /// <summary>
-    /// Specifies an IEEE 802.11 Shared Key authentication algorithm that requires the use of a pre-shared
-    /// Wired Equivalent Privacy (WEP) key for the 802.11 authentication.
+    /// WPA2 PSK or WPA3 PSK mixed-mode encryption.
     /// </summary>
-    SharedKey80211 = 7,
+    WpaWpa3Psk = 7,
 
     /// <summary>
     /// Specifies a Wi-Fi Protected Access (WPA) algorithm. IEEE 802.1X port authorization is performed by
@@ -60,7 +64,7 @@ public enum NetworkAuthenticationType
     Wpa = 8,
 
     /// <summary>
-    /// Wi-Fi Protected Access.
+    /// Wi-Fi Protected Access with no authentication server.
     /// </summary>
     WpaNone = 9,
 
@@ -84,20 +88,19 @@ public enum NetworkAuthenticationType
     Ihv = 12,
 
     /// <summary>
-    /// Specifies a Wi-Fi Protected Access 3 (WPAs) algorithm that uses pre-shared keys (PSK). IEEE 802.1X port
-    /// authorization is performed by the supplicant and authenticator. Cipher keys are dynamically derived
-    /// through a pre-shared key that is used on both the supplicant and authenticator.
+    /// Open authentication over 802.11 wireless.
     /// </summary>
-    Wpa3Psk = 13,
+    Open80211 = 13,
 
     /// <summary>
-    /// WPA PSK or WPA3 PSk encryption.
+    /// Specifies an IEEE 802.11 Shared Key authentication algorithm that requires the use of a pre-shared
+    /// Wired Equivalent Privacy (WEP) key for the 802.11 authentication.
     /// </summary>
-    WpaWap3Psk = 14,
+    SharedKey80211 = 14,
 
     /// <summary>
     /// Unknown authentication type.
     /// </summary>
-    Unknown = 1
+    Unknown = 255
 
 }
