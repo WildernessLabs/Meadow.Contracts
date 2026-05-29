@@ -5,7 +5,7 @@ namespace Meadow;
 /// <summary>
 /// 32bit color struct
 /// </summary>
-public struct Color
+public readonly struct Color
 {
     /// <summary>
     /// Default color - black with 0 alpha 
@@ -67,31 +67,28 @@ public struct Color
     /// </summary>
     public byte B { get; }
 
-    private float hue;
-    private float saturation;
-    private float brightness;
-
     /// <summary>
-    /// Hue of current color (0-360)
+    /// Hue of current color (0-1)
     /// </summary>
-    public float Hue { get { ComputeHSB(); return hue; } }
+    public float Hue
+    {
+        get { ConvertToHsb(R, G, B, out float h, out _, out _); return h; }
+    }
 
     /// <summary>
     /// Saturation of color (0-1)
     /// </summary>
-    public float Saturation { get { ComputeHSB(); return saturation; } }
+    public float Saturation
+    {
+        get { ConvertToHsb(R, G, B, out _, out float s, out _); return s; }
+    }
 
     /// <summary>
     /// Brightness of color (0-1)
     /// </summary>
-    public float Brightness { get { ComputeHSB(); return brightness; } }
-
-    private void ComputeHSB()
+    public float Brightness
     {
-        if (hue == -1)
-        {
-            ConvertToHsb(R, G, B, out hue, out saturation, out brightness);
-        }
+        get { ConvertToHsb(R, G, B, out _, out _, out float b); return b; }
     }
 
     /// <summary>
@@ -111,8 +108,6 @@ public struct Color
         G = (byte)green;
         B = (byte)blue;
         A = (byte)alpha;
-
-        hue = saturation = brightness = -1;
     }
 
     /// <summary>
@@ -128,8 +123,6 @@ public struct Color
         G = green;
         B = blue;
         A = alpha;
-
-        hue = saturation = brightness = -1;
     }
 
     /// <summary>
@@ -147,7 +140,6 @@ public struct Color
         G = (byte)(255 * green);
         B = (byte)(255 * blue);
         A = 255;
-        hue = saturation = brightness = -1;
     }
 
     /// <summary>
@@ -165,10 +157,6 @@ public struct Color
         G = (byte)(255 * green);
         B = (byte)(255 * blue);
         A = alpha;
-
-        this.hue = hue;
-        this.saturation = saturation;
-        this.brightness = brightness;
     }
 
     /// <summary>
