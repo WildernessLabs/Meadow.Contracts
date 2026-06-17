@@ -61,4 +61,11 @@ public interface ICellNetworkAdapter : INetworkAdapter
     /// <param name="timeout">The GNSS scan timeout duration in seconds.</param>
     /// <returns>A string containing combined output from GNSS-related AT commands, including NMEA sentences.</returns>
     string FetchGnssAtCmdsOutput(IGnssResult[] resultTypes, int timeout = gnssFixTimeoutInSeconds);
+
+    /// <summary>
+    /// Enable the modem to communicate through serial (COM1 or COM4).
+    /// </summary>
+    /// <param name="pin"> Output pin connected to PWRKEY.</param>
+    /// <param name="modem">The type of modem model ported. </param>
+    public void EnableModem(IPin pin, CellModemType modem);
 }
