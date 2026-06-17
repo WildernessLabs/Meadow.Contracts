@@ -7,6 +7,7 @@
    <PackageProjectUrl>http://developer.wildernesslabs.co/Meadow/</PackageProjectUrl>
    <PackageId>Meadow.Contracts</PackageId>
    <PackageIcon>icon.png</PackageIcon>
+   <PackageReadmeFile>README.md</PackageReadmeFile>
    <RepositoryUrl>https://github.com/WildernessLabs/Meadow.Contracts</RepositoryUrl>
    <PackageTags>Meadow</PackageTags>
    <Description>Wilderness Labs contracts for .NET applications on Meadow hardware</Description>
@@ -23,6 +24,7 @@
  </PropertyGroup>
     <ItemGroup>
         <None Include="icon.png" Link="icon.png" Pack="true" PackagePath="" />
+        <None Include="..\..\README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
     <ItemGroup>
     <ProjectReference Include="..\..\..\Meadow.Logging\Source\Meadow.Logging\lib\Meadow.Logging.csproj" />
