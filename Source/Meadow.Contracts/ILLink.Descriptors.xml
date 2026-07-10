@@ -1,0 +1,3 @@
+<linker>
+  <assembly fullname="Meadow.Contracts" preserve="all" />
+</linker>
