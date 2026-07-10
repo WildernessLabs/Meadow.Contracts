@@ -1,4 +1,4 @@
-<Project Sdk="Meadow.Sdk/1.1.0">
+<Project Sdk="Microsoft.NET.Sdk">
  <PropertyGroup>
    <TargetFramework>net10.0</TargetFramework>
    <OutputType>Library</OutputType>
@@ -24,6 +24,11 @@
  </PropertyGroup>
     <ItemGroup>
         <None Include="icon.png" Link="icon.png" Pack="true" PackagePath="" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="ILLink.Descriptors.xml">
+            <LogicalName>ILLink.Descriptors.xml</LogicalName>
+        </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
     <ProjectReference Include="..\..\..\Meadow.Logging\Source\Meadow.Logging\lib\Meadow.Logging.csproj" />

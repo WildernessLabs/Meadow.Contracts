@@ -1,7 +1,9 @@
 ﻿using Meadow.Hardware;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 
 namespace Meadow;
 
@@ -41,16 +43,17 @@ public abstract class PinDefinitionBase : IPinDefinitions
     }
 
     /// <summary>
-    /// Uses reflection to discover all IPin properties
+    /// Uses reflection to discover all IPin properties.
+    /// Subclasses must preserve their public IPin properties when publishing with trimming enabled.
     /// </summary>
+    [UnconditionalSuppressMessage("ReflectionAnalysis", "IL2075",
+        Justification = "ILLink.Descriptors.xml preserves all public properties on concrete pin definition types in Meadow assemblies.")]
     private List<IPin> DiscoverAllPinsViaReflection()
     {
         var list = new List<IPin>();
 
         foreach (var prop in this.GetType()
-            .GetProperties(
-                System.Reflection.BindingFlags.Instance |
-                System.Reflection.BindingFlags.Public)
+            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
             .Where(p => p.CanRead && p.GetIndexParameters().Length == 0 && p.PropertyType == typeof(IPin))
             )
         {
